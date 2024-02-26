@@ -10,7 +10,7 @@ import photoprofildefault from '/src/assets/photo/photoprofildefault.png';
 
 
 
-export const Mysignin = () => {
+export const Mysignin = ({ setUsernameProps }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -58,7 +58,7 @@ export const Mysignin = () => {
     const handleSignup = async () => {
         let errorsTemp = []; // Un tableau temporaire pour stocker les erreurs
 
-         // Validation de l'e-mail
+        // Validation de l'e-mail
         if (!email.trim()) {
             errorsTemp.push("Email address is required.");
         } else if (email.includes(" ")) {
@@ -109,7 +109,7 @@ export const Mysignin = () => {
         }
 
 
-    
+
         // Proceed to create the user if there are no errors.
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -129,9 +129,10 @@ export const Mysignin = () => {
 
             await set(ref(database, 'users/' + userId), userData);
 
-             // Enregistrement du nom d'utilisateur dans la collection 'usernames'
-             await set(ref(database, 'usernames/' + trimmedUsername.toLowerCase()), userId);
-          
+            // Enregistrement du nom d'utilisateur dans la collection 'usernames'
+            await set(ref(database, 'usernames/' + trimmedUsername.toLowerCase()), userId);
+
+            setUsernameProps(trimmedUsername.toLowerCase())
             navigate('/'); // Redirection vers la page d'accueil après une inscription réussie.
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {

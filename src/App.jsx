@@ -19,41 +19,46 @@ import { Myinbox } from '/src/page/Myinbox';
 import { Myprofilinfo } from '/src/page/Myprofilinfo';
 import { Myprofilpage } from '/src/page/Myprofilpage';
 import { Mysalehistory } from '/src/page/Mysalehistory';
-import {Mychat} from '/src/page/Mychat'
+import { Mychat } from '/src/page/Mychat'
 import { Myresetpassword } from '/src/page/Myresetpassword';
 import { NotFoundPage } from '/src/page/NotFoundPage';
-import {MyAgeVerification} from '/src/components/MyAgeVerification';
-
+import { MyAgeVerification } from '/src/components/MyAgeVerification';
+import { Mysingleproductclone } from '/src/page/Mysingleproductclone'
+import { Mysingleproductseeds } from '/src/page/Mysingleproductseeds'
+import { Mysingleproductservice } from '/src/page/Mysingleproductservice'
 // Layout Components
 import { Myheader } from '/src/components/Myheader';
 import { Myfooter } from '/src/components/Myfooter';
 
-const LayoutComponent = () => (
+const LayoutComponent = ({ username, setUsername }) => (
   <>
-  <MyAgeVerification />
-    <Myheader />
+    <MyAgeVerification />
+    <Myheader username={username} setUsername={setUsername} />
     <Outlet /> {/* This place will render the current route's component */}
     <Myfooter />
   </>
 );
 
 function App() {
+  const [username, setUsername] = useState(""); // Ajoutez cette ligne pour gérer l'état du nom d'utilisateur
   return (
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<LayoutComponent />}>
+          <Route path="/" element={<LayoutComponent username={username} setUsername={setUsername} />}>
             {/* Non-Protected Routes */}
             <Route index element={<Myhome />} />
             <Route path="login" element={<Mylogin />} />
             <Route path="clone" element={<Myclone />} />
             <Route path="seeds" element={<Myseeds />} />
             <Route path="service" element={<Myservice />} />
-            <Route path="signin" element={<Mysignin />} />
+            <Route path="signin" element={<Mysignin setUsernameProps={setUsername} />} />
             <Route path="faq" element={<Myfaq />} />
             <Route path="blog" element={<Myblog />} />
             <Route path="resetPassword" element={<Myresetpassword />} />
-            
+            <Route path="/singleproductclone/:productId" element={<Mysingleproductclone />} />
+            <Route path="/singleproductseeds/:productId" element={<Mysingleproductseeds />} />
+            <Route path="/singleproductservice/:productId" element={<Mysingleproductservice />} />
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
               <Route path="myaddarticle" element={<Myaddarticle />} />
@@ -64,7 +69,7 @@ function App() {
               <Route path="mysalehistory" element={<Mysalehistory />} />
               <Route path="mychat" element={<Mychat />} />
             </Route>
-            
+
             {/* Fallback Route */}
             <Route path="*" element={<NotFoundPage />} />
           </Route>

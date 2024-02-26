@@ -20,6 +20,8 @@ export function Myaddarticle() {
 
   // Ajoutez un état pour stocker l'ID de l'utilisateur
   const [sellerId, setSellerId] = useState('');
+  // Pour réinitialise le champs input file
+  const [formKey, setFormKey] = useState(Date.now());
 
 
   const handleFileChange = (event, index) => {
@@ -95,7 +97,7 @@ export function Myaddarticle() {
     setHlvdTested(false);
     setPhotos([]);
     setFileInputs(['']);
-    setSellerId('');
+    setFormKey(Date.now());
 
 
   };
@@ -104,7 +106,7 @@ export function Myaddarticle() {
     <div id='myaddarticle'>
 
       {/* Le reste de votre formulaire ici */}
-      <form onSubmit={handleSubmit} id="add-article-form">
+      <form onSubmit={handleSubmit} id="add-article-form" key={formKey}>
         <h2 className='manrope'>ADD NEW PRODUCT</h2>
         {/* Sélecteur de type de produit */}
         <label htmlFor="">Type of product:</label>
@@ -178,7 +180,7 @@ export function Myaddarticle() {
         {/* Gestion de l'ajout de photos */}
         {fileInputs.map((input, index) => (
           <div key={index}>
-            <input type="file" onChange={(e) => handleFileChange(e, index)} />
+            <input type="file" key={formKey} onChange={(e) => handleFileChange(e, index)} />
             {index === fileInputs.length - 1 && (
               <button type="button" onClick={addFileInput} className="add-photo-btn">Add another photo</button>
             )}

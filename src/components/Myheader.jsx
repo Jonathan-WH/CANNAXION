@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { ref, get } from "firebase/database";
 
 
-export function Myheader() {
+export function Myheader({ username, setUsername }) {
     const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
-    const [username, setUsername] = useState(""); // Ajoutez cette ligne pour gérer l'état du nom d'utilisateur
+
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -41,7 +41,7 @@ export function Myheader() {
         });
 
         return () => unsubscribe();
-    }, []); // Tableau de dépendances vide pour s'exécuter uniquement lors du montage
+    }, [username]); // Tableau de dépendances vide pour s'exécuter uniquement lors du montage
 
 
     return <>

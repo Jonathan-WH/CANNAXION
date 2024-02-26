@@ -150,11 +150,20 @@ table {
     font-style: normal;
 }
 
+.fontweight {
+    font-weight: 800
+}
+
 /****CSS FONT ****/
 
 
 
 /** CSS FOR THE HEADER NAV PART**/
+
+
+body {
+    background-color: #f8f9fa;
+}
 
 header {
     border-bottom: 2px solid #d39d21;
@@ -367,8 +376,9 @@ div#pub img {
 
 
 div#product-content {
-    width: 100%;
+    width: 90%;
     display: flex;
+    margin: auto;
 }
 
 div#seeds,
@@ -547,7 +557,8 @@ footer div#footer-content {
     cursor: pointer;
 }
 
-#signup-form button, #myaddarticle button {
+#signup-form button,
+#myaddarticle button {
     cursor: pointer;
     padding: 10px 15px;
     background-color: #d39d21;
@@ -562,10 +573,10 @@ footer div#footer-content {
 #myaddarticle button {
     margin: 20px;
     text-align: center;
-    
+
 }
 
-#myaddarticle button[type= "submit"] {
+#myaddarticle button[type="submit"] {
     width: 94%;
 }
 
@@ -725,8 +736,369 @@ footer div#footer-content {
 }
 
 div#myaddarticle form h2 {
-text-align: center;
-margin: 20px;
+    text-align: center;
+    margin: 20px;
 }
 
 /** CSS FOR myaddarticle**/
+
+
+
+
+
+
+
+
+
+/** CSS FOR myarticle**/
+
+#myarticle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+#myarticle h2 {
+    width: 100%;
+    text-align: center;
+    color: #333;
+    margin: 40px 0 20px;
+    font-size: 40px;
+}
+
+#myarticle div {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+#myarticle h3 {
+    color: black;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+#myarticle img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+}
+
+#myarticle>div>p:nth-child(3) {
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+#myarticle p {
+    color: #666;
+    line-height: 1.6;
+}
+
+#myarticle p.fontweight {
+    margin-top: 10px;
+}
+
+#myarticle p:first-of-type {
+    margin-top: 0;
+}
+
+
+.delete-confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000000;
+}
+
+.delete-confirm-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button.deletearticle {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #d39d21;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+button.deletearticle:hover {
+    background-color: #ba9640;
+
+}
+
+button.deletearticle {
+    margin: 20px;
+    margin-left: 0;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+
+/** CSS FOR myarticle**/
+
+
+
+
+
+
+
+
+
+/** CSS FOR myclone**/
+
+#myclone {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+h2.myclone {
+    text-align: center;
+    font-size: 30px;
+    background-color: #f8f9fa;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.clone-item {
+    width: 200px;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.clone-item:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.clone-item h3 {
+    margin: 0;
+    margin-bottom: 10px;
+    color: black;
+    text-align: center;
+    font-weight: 800;
+}
+
+
+
+.clone-item p {
+    margin: 10px 0;
+    color: #6c757d;
+}
+
+.clone-item button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    background-color: #d39d21;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.clone-item button:hover {
+    background-color: #ba9640;
+}
+
+
+/** CSS FOR myclone**/
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** CSS FOR mysingleprodcut**/
+
+h2#singleclone {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 2vw;
+}
+
+div.product-details {
+    display: flex;
+    margin: 30px;
+    justify-content: center
+}
+
+div.description {
+    margin: 0px 20px 20px 0px;
+    width: 60%;
+    border: 1px solid #d39d21;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding-bottom: 20px;
+
+}
+
+div.description p {
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: justify;
+}
+
+div.description p.fontweight {
+    margin-bottom: 5px;
+}
+
+div.description img {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+div.quantity-selector {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid #d39d21;
+    padding: 20px;
+    height: fit-content;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0px 0px 20px 50px;
+}
+
+div.quantity-selector p.fontweight {
+    margin-bottom: 5px ;
+}
+
+div.sellerdetails {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    border-top: solid 1px #d39d21;
+    padding-top: 20px;
+
+}
+
+div.sellerdetails div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+div.sellerdetails img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+button.singlebuy {
+    margin-top: 10px;
+    width: 100%;
+}
+
+button.singlebuy, button.singlecontact {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #d39d21;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 10px;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+button.singlebuy:hover, button.singlecontact:hover {
+    background-color: #ba9640;
+}
+
+input#quantity {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+span.spansingle{
+    font-weight: 900;
+}
+
+.singleusername {
+    color: #d39d21;
+}
+
+
+
+/** CSS FOR mysingleprodcut**/
+
+
+
+
+/*******LOADING PAGE********/
+
+
+@keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loading-spinner {
+    border: 4px solid rgba(0,0,0,.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s linear infinite;
+  }
+  
+/*******LOADING PAGE********/
