@@ -98,7 +98,9 @@ export function Mysingleproductservice() {
                                 <img src={sellerDetails.profilpictureurl} alt="" />
                                 <div>
                                     <p>{sellerDetails.username.toUpperCase()}</p>
-                                 <button onClick={handleBuyClick} className='singlecontact'>contact</button> 
+                                    <NavLink to={`/mychat`}>
+                   <button onClick={handleBuyClick} className='singlecontact'>contact</button>
+                    </NavLink>
                                 </div>
                                 
                             </div>

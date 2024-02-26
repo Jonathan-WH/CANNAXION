@@ -123,7 +123,9 @@ export function Mysingleproductseeds() {
                     <img src={sellerDetails.profilpictureurl} alt="" />
                     <div>
                         <p>{sellerDetails.username.toUpperCase()}</p>
-                     <button className='singlecontact'>contact</button> 
+                        <NavLink to={`/mychat`}>
+                   <button className='singlecontact'>contact</button>
+                    </NavLink>
                     </div>
                     
                 </div>
