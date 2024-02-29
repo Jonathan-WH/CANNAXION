@@ -30,6 +30,13 @@ export function Myaddarticle() {
     setFileInputs(files);
   };
 
+
+  const handleRemoveFileInput = (index) => {
+    // Créer une nouvelle liste sans l'élément à l'index spécifié
+    const updatedFileInputs = fileInputs.filter((_, fileIndex) => fileIndex !== index);
+    setFileInputs(updatedFileInputs);
+  };
+  
   const addFileInput = () => {
     setFileInputs([...fileInputs, '']);
   };
@@ -118,19 +125,19 @@ export function Myaddarticle() {
 
         {/* Champs communs */}
         <label htmlFor="">Product Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Product Name" />
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Product Name" required />
 
         <label htmlFor="">Description:</label>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description"></textarea>
+        <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required></textarea>
 
         <label htmlFor="">Price: (CHF)</label>
-        <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price" />
+        <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price" required />
 
 
         {productType !== 'service' && (
           <>
             <label htmlFor="">Shipping price: (CHF)</label>
-            <input type="number" value={shippingPrice} onChange={(e) => setShippingPrice(e.target.value)} placeholder="Shipping Price" />
+            <input type="number" value={shippingPrice} onChange={(e) => setShippingPrice(e.target.value)} placeholder="Shipping Price" required />
           </>
 
         )}
@@ -140,13 +147,13 @@ export function Myaddarticle() {
         {productType === 'seeds' && (
           <>
             <label htmlFor="">Quantity:</label>
-            <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Quantity" />
+            <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Quantity" required />
 
             <label htmlFor="">Quantity of seeds per pack:</label>
-            <input type="number" value={quantityPerPack} onChange={(e) => setQuantityPerPack(e.target.value)} placeholder="Quantity per Pack" />
+            <input type="number" value={quantityPerPack} onChange={(e) => setQuantityPerPack(e.target.value)} placeholder="Quantity per Pack" required />
 
             <label htmlFor="">Gender:</label>
-            <select value={gender} onChange={(e) => setGender(e.target.value)}>
+            <select value={gender} onChange={(e) => setGender(e.target.value)} required>
               <option value="">Select Gender</option>
               <option value="regular">Regular</option>
               <option value="feminized">Feminized</option>
@@ -159,8 +166,8 @@ export function Myaddarticle() {
         {productType === 'clone' && (
           <>
             <label htmlFor="">Quantity:</label>
-            <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Quantity" />
-            <select value={gender} onChange={(e) => setGender(e.target.value)}>
+            <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Quantity" required />
+            <select value={gender} onChange={(e) => setGender(e.target.value)} required>
               <option value="">Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -177,15 +184,18 @@ export function Myaddarticle() {
           </label>
         )}
 
-        {/* Gestion de l'ajout de photos */}
-        {fileInputs.map((input, index) => (
-          <div key={index}>
-            <input type="file" key={formKey} onChange={(e) => handleFileChange(e, index)} />
-            {index === fileInputs.length - 1 && (
-              <button type="button" onClick={addFileInput} className="add-photo-btn">Add another photo</button>
-            )}
-          </div>
-        ))}
+          {/* Gestion de l'ajout de photos */}
+          {fileInputs.map((input, index) => (
+            <div key={index}>
+              <input type="file" key={input.key} onChange={(e) => handleFileChange(e, index)} />
+              {index !== 0 && (
+                <button type="button" onClick={() => handleRemoveFileInput(index)} className="remove-photo-btn">Remove</button>
+              )}
+              {index === fileInputs.length - 1 && (
+                <button type="button" onClick={addFileInput} className="add-photo-btn">Add another photo</button>
+              )}
+            </div>
+))}
 
         <button type="submit">Submit</button>
         <br />

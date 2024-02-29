@@ -714,7 +714,7 @@ footer div#footer-content {
 }
 
 .age-verification-content button {
-    background-color: #d9ef0c;
+    background-color: #d39d21;
     color: #000000;
     border: none;
     padding: 10px 20px;
@@ -725,7 +725,7 @@ footer div#footer-content {
 }
 
 .age-verification-content button:hover {
-    background-color: #bac431;
+    background-color: #d39d21;
 }
 
 .confirmation-message {
@@ -738,6 +738,14 @@ footer div#footer-content {
 div#myaddarticle form h2 {
     text-align: center;
     margin: 20px;
+}
+
+#myaddarticle button.remove-photo-btn {
+    background-color: rgb(183, 12, 12);
+}
+
+#myaddarticle button.remove-photo-btn:hover {
+    background-color: rgb(134, 12, 12);
 }
 
 /** CSS FOR myaddarticle**/
@@ -819,7 +827,7 @@ div#myaddarticle form h2 {
 }
 
 
-.delete-confirm-overlay {
+#myarticle .delete-confirm-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -832,7 +840,7 @@ div#myaddarticle form h2 {
     z-index: 10000000;
 }
 
-.delete-confirm-container {
+#myarticle .delete-confirm-container {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -851,6 +859,7 @@ button.deletearticle {
     font-size: 16px;
     transition: background-color 0.3s;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 button.deletearticle:hover {
@@ -863,6 +872,7 @@ button.deletearticle {
     margin-left: 0;
     text-align: center;
     width: 100%;
+    cursor: pointer;
 }
 
 
@@ -1015,7 +1025,7 @@ div.quantity-selector {
 }
 
 div.quantity-selector p.fontweight {
-    margin-bottom: 5px ;
+    margin-bottom: 5px;
 }
 
 div.sellerdetails {
@@ -1044,7 +1054,8 @@ button.singlebuy {
     width: 100%;
 }
 
-button.singlebuy, button.singlecontact {
+button.singlebuy,
+button.singlecontact {
     cursor: pointer;
     padding: 10px 15px;
     background-color: #d39d21;
@@ -1056,7 +1067,8 @@ button.singlebuy, button.singlecontact {
     margin-bottom: 10px;
 }
 
-button.singlebuy:hover, button.singlecontact:hover {
+button.singlebuy:hover,
+button.singlecontact:hover {
     background-color: #ba9640;
 }
 
@@ -1065,7 +1077,7 @@ input#quantity {
     margin-bottom: 10px;
 }
 
-span.spansingle{
+span.spansingle {
     font-weight: 900;
 }
 
@@ -1080,25 +1092,207 @@ span.spansingle{
 
 
 
-/*******LOADING PAGE********/
 
 
-@keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  .loading-spinner {
-    border: 4px solid rgba(0,0,0,.1);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border-left-color: #09f;
-    animation: spin 1s linear infinite;
-  }
-  
-/*******LOADING PAGE********/
+
+
+
+
+
+/** CSS FOR mychat**/
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.messages-container {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-container h2 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-family: "Manrope", sans-serif;
+    font-size: 2vw;
+}
+
+.message {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 60%;
+}
+
+.sent {
+    background-color: #007bff;
+    align-self: flex-end;
+    color: white;
+}
+
+.sent::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    /* Ajustez cette valeur selon le design */
+    width: 20px;
+    /* Largeur du triangle */
+    height: 20px;
+    /* Hauteur du triangle */
+    background-color: #007bff;
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+}
+
+.received {
+    background-color: #e5e5ea;
+    color: black;
+    align-self: flex-start;
+}
+
+.received::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    /* Ajustez cette valeur selon le design */
+    width: 20px;
+    /* Largeur du triangle */
+    height: 20px;
+    /* Hauteur du triangle */
+    background-color: #e5e5ea;
+    clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+.message-input {
+    display: flex;
+}
+
+.message-input input {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+.message-input button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+div.transaction-details,
+div.qrcode,
+p.status,
+div.transaction-finished-notification {
+    border: solid 1px #d39d21;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 15px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+div.message.received:first-child {
+    margin-top: 30px;
+}
+
+div.qrcode,
+p.status {
+    padding: 8px;
+}
+
+
+/** CSS FOR mychat**/
+
+
+
+
+/** CSS FOR myinbox**/
+
+.inbox-container {
+    padding: 20px;
+}
+
+.conversation-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.conversation-item {
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.conversation-item svg {
+    margin-right: 20px;
+}
+
+.conversation-item:hover {
+    background-color: #e9e9e9;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+div.acceptRefuse button:last-child {
+    background-color: rgb(146, 35, 35);
+    color: white;
+    padding: 10px;
+    border: none;
+    margin-left: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+div.acceptRefuse button:first-child {
+    background-color: rgb(42, 113, 42);
+    color: white;
+    padding: 10px;
+    border: none;
+    margin-left: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.fundreceived,
+button.order_received {
+    background-color: rgb(42, 113, 42);
+    color: white;
+    padding: 10px;
+    border: none;
+    margin-left: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+/** CSS FOR myinbox**/

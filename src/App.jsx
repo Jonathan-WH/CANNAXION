@@ -67,7 +67,8 @@ function App() {
               <Route path="myprofilinfo" element={<Myprofilinfo />} />
               <Route path="myprofilpage" element={<Myprofilpage />} />
               <Route path="mysalehistory" element={<Mysalehistory />} />
-              <Route path="mychat" element={<Mychat />} />
+              <Route path="chat/:conversationId" element={<Mychat />} />
+
             </Route>
 
             {/* Fallback Route */}

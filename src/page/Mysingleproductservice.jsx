@@ -1,13 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import { database } from '/firebase-config';
-import { ref, onValue } from 'firebase/database';
-
+import { ref, onValue, push, serverTimestamp, set} from 'firebase/database';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBitcoin } from '@fortawesome/free-brands-svg-icons';
-
+import { useAuth } from '/src/components/Myauthcontext';
 
 export function Mysingleproductservice() {
+
+    /**
+ * Crée un identifiant unique pour une conversation entre deux utilisateurs.
+ * 
+ * @param {string} userId1 - L'identifiant du premier utilisateur.
+ * @param {string} userId2 - L'identifiant du second utilisateur.
+ * @return {string} - Un identifiant unique pour la conversation.
+ */
+    function createConversationId(userId1, userId2) {
+        // Assurez-vous que l'ordre des ID est toujours le même pour une paire donnée
+        const ids = [userId1, userId2].sort();
+        return ids.join('_');
+    }
+
+
+
+    const { currentUser } = useAuth();
+
+
+    const navigate = useNavigate();
+    // Logique pour définir productDetails, sellerDetails, etc.
     const [productDetails, setProductDetails] = useState(null); // Initialiser avec null pour vérifier facilement si les données sont chargées
     const [isLoading, setIsLoading] = useState(true);
     const [quantity, setQuantity] = useState(1);
@@ -50,8 +70,47 @@ export function Mysingleproductservice() {
     const totalPriceBtc = btcPrice ? totalPrice / btcPrice : 0;
 
     const handleBuyClick = () => {
-        console.log(`contacter ${productDetails.name} `);
+        console.log(`Acheter ${quantity} de ${productDetails.name} au prix de ${totalPrice.toFixed(2)} CHF ou ${totalPriceBtc.toFixed(8)} BTC`);
     };
+
+
+
+
+    const handleContactClick = async () => {
+        if (!currentUser) {
+            alert("You have to be logged to contact anybody");
+            return;
+        }
+    
+        if (window.confirm(`Are your sure to want to contact ${sellerDetails.username}?`)) {
+            const userRef = ref(database, `users/${currentUser.uid}`);
+            // Utilisation de onValue avec onlyOnce
+            onValue(userRef, async (snapshot) => {
+                const userData = snapshot.val();
+                if (userData) {
+                    const userName = userData.username; // Assurez-vous que cette propriété existe
+    
+                    const conversationId = createConversationId(currentUser.uid, sellerDetails.id);
+                    
+                    const newMessageRef = push(ref(database, 'messages'));
+                    await set(newMessageRef, {
+                        fromUserId: currentUser.uid,
+                        toUserId: sellerDetails.id,
+                        message: `I am ${userName} and I would like to speak with you! Thanks for your time!`,
+                        timestamp: serverTimestamp(),
+                        status: "",
+                        conversationId
+                    });
+    
+                    navigate(`/chat/${conversationId}`);
+                }
+            }, { onlyOnce: true }); // Ajout de l'option onlyOnce ici
+        } else {
+            console.log('Action annulée par l\'utilisateur.');
+            // Ici, aucune redirection n'est effectuée car l'utilisateur a annulé l'action
+        }
+    };
+    
 
     if (isLoading || !productDetails || !sellerDetails || !btcPrice) {
         return <div className="loading-message">Chargement des détails du produit...</div>;
@@ -98,9 +157,9 @@ export function Mysingleproductservice() {
                                 <img src={sellerDetails.profilpictureurl} alt="" />
                                 <div>
                                     <p>{sellerDetails.username.toUpperCase()}</p>
-                                    <NavLink to={`/mychat`}>
-                   <button onClick={handleBuyClick} className='singlecontact'>contact</button>
-                    </NavLink>
+                                    
+                                    <button onClick={handleContactClick} className='singlecontact'>contact</button>
+                                    
                                 </div>
                                 
                             </div>
