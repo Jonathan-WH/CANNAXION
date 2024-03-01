@@ -19,20 +19,20 @@ export function Myarticle() {
     const confirmDelete = (itemId) => {
         setShowDeleteConfirm(true);
         setItemToDelete(itemId);
-      };
+    };
 
-      const deleteItem = () => {
+    const deleteItem = () => {
         const productRef = ref(database, `products/${itemToDelete.category}/${itemToDelete.id}`);
         remove(productRef).then(() => {
-          setShowDeleteConfirm(false);
-          setItemToDelete(null);
-          // Ajoutez ici une logique pour rafraîchir la liste des articles si nécessaire
+            setShowDeleteConfirm(false);
+            setItemToDelete(null);
+            // Ajoutez ici une logique pour rafraîchir la liste des articles si nécessaire
         }).catch(error => {
-          console.error("Error removing document: ", error);
+            console.error("Error removing document: ", error);
         });
-      };
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         if (!currentUser) return;
 
         // Récupérer les articles appartenant à l'utilisateur courant pour chaque catégorie
@@ -57,7 +57,15 @@ export function Myarticle() {
 
     return (
         <div id='myarticle'>
-            <h2 className='manrope'>Seeds</h2>
+
+            <a className='linkpage' href="#clone">Clone</a>
+
+            <a className='linkpage' href="#service">Service</a>
+
+            <a className='linkpage' href="#seeds">Seeds</a>
+
+
+            <h2 className='manrope' id='seeds'>Seeds</h2>
             {seeds.map((item) => (
                 <div key={item.id}>
                     <h3>{item.name}</h3>
@@ -81,7 +89,7 @@ export function Myarticle() {
                 </div>
             ))}
 
-            <h2 className='manrope'>Clone</h2>
+            <h2 className='manrope' id='clone'>Clone</h2>
             {clones.map((item) => (
                 <div key={item.id}>
                     <h3>{item.name}</h3>
@@ -105,7 +113,7 @@ export function Myarticle() {
                 </div>
             ))}
 
-            <h2 className='manrope'>Services</h2>
+            <h2 className='manrope' id='service'>Services</h2>
             {services.map((item) => (
                 <div key={item.id}>
                     <h3>{item.name}</h3>
@@ -120,17 +128,17 @@ export function Myarticle() {
                 </div>
             ))}
 
-        {showDeleteConfirm && (
-            <div className="delete-confirm-overlay">
-            <div className="delete-confirm-container">
-                <p>Are you sure you want to delete this product ?</p>
-                <button onClick={deleteItem}>Confirm</button>
-                <button onClick={() => setShowDeleteConfirm(false)}>Cancel</button>
-            </div>
-            </div>
-        )}
+            {showDeleteConfirm && (
+                <div className="delete-confirm-overlay">
+                    <div className="delete-confirm-container">
+                        <p>Are you sure you want to delete this product ?</p>
+                        <button onClick={deleteItem}>Confirm</button>
+                        <button onClick={() => setShowDeleteConfirm(false)}>Cancel</button>
+                    </div>
+                </div>
+            )}
         </div>
 
-  
+
     );
 }

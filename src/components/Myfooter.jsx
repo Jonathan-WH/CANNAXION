@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export function Myfooter() {
     return <>
    <footer>
@@ -39,12 +41,12 @@ export function Myfooter() {
             <div className='logo'>
 
             <div>
-                <a href="/index.html"><img src="/src/assets/logo/logo_cannaxion.png" alt="Logo" className=""
-                    id='logofooter' /></a>
+            <NavLink to="/"><img src="/src/assets/logo/logo_cannaxion.png" alt="Logo" className=""
+                    id='logofooter' /></NavLink>
             </div>
 
             <div>
-                <h1><a href="/index.html" className='manrope'>CANNAXION</a></h1>
+                <h1><NavLink to="/" className="manrope">CANNAXION</NavLink></h1>
             </div>
 
             </div>

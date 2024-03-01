@@ -192,7 +192,6 @@ div.logo {
 
 div.logo h1 {
     text-align: center;
-    padding-bottom: 20px;
 }
 
 div.logo h1 a {
@@ -794,6 +793,7 @@ div#myaddarticle form h2 {
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 20px;
+    text-align: center;
 }
 
 #myarticle img {
@@ -873,6 +873,10 @@ button.deletearticle {
     text-align: center;
     width: 100%;
     cursor: pointer;
+}
+
+.linkpage {
+    color: black;
 }
 
 
@@ -1288,6 +1292,33 @@ button.order_received {
     margin-left: 20px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+div.transaction-finished-notification.comment {
+    width: 90%;
+}
+
+
+div.transaction-finished-notification.comment textarea {
+    width: 100%;
+    height: 50px;
+    margin: auto;
+    border: solid 1px #d39d21;
+    margin-bottom: 10px;
+}
+
+
+div.transaction-finished-notification.comment button {
+    border: none;
+    border: solid 1px #d39d21;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+div.transaction-finished-notification.comment h3 {
+    margin-bottom: 10px;
 }
 
 

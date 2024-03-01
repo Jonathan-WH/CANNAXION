@@ -146,8 +146,8 @@ export function Mychat() {
           <p>The transaction is complete. Thank you for your trust. The conversation will be deleted in 15 days.</p>
         </div>
 
-        <div className="transaction-finished-notification">
-        <h3>Let a comment on each othere to help grow the community :</h3>
+        <div className="transaction-finished-notification comment">
+        <h3>Let a comment on each other to help grow the community :</h3>
       <textarea type="text" />
       <button>SEND</button>
         </div>
