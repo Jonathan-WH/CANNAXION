@@ -1,4 +1,9 @@
+APP WEB CANNAXION, Plateforme de vente avec chat et paiement directement du client au vendeur via crypto-monnaie BITCOIN, avec un générateur de QRCode. Le QR code ne fonctionne pas mais contient bien les information du montant et de l'adresse BTC
+
+
 TO DO LIST FOR FINISH THE PROJECT :
+
+-Faire marcher le QRcode avec trust wallet
 
 -terminer la partie commentaire
 
